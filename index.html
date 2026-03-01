@@ -1,54 +1,99 @@
-<html>
-<body style="margin: 0; padding: 0; display: block;">
-<div id="3dmolviewer_17723448734633422"  style="position: relative; width: 400px; height: 400px;">
-        <p id="3dmolwarning_17723448734633422" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misc Slides Pages</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
+            background: #f7f7f8;
+            color: #1f1f1f;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .card {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 14px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin: 0.7rem 0;
+        }
+
+        a {
+            color: #0b57d0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        code {
+            background: #f1f3f5;
+            padding: 0.15rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <p>
+            This GitHub Pages site hosts miscellaneous HTML content used for
+            slide presentations and interactive demos.
+        </p>
+
+        <div class="card">
+            <h2>Contents</h2>
+            <p>
+                Add links here to the pages you want to use in your
+                presentations.
+            </p>
+
+            <ul>
+                <li><a href="molecules/">Molecule pages</a></li>
+                <li><a href="molecules/example.html">Example molecule</a></li>
+            </ul>
         </div>
-<script>
 
-var loadScriptAsync = function(uri){
-  return new Promise((resolve, reject) => {
-    //this is to ignore the existence of requirejs amd
-    var savedexports, savedmodule;
-    if (typeof exports !== 'undefined') savedexports = exports;
-    else exports = {}
-    if (typeof module !== 'undefined') savedmodule = module;
-    else module = {}
-
-    var tag = document.createElement('script');
-    tag.src = uri;
-    tag.async = true;
-    tag.onload = () => {
-        exports = savedexports;
-        module = savedmodule;
-        resolve();
-    };
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-});
-};
-
-if(typeof $3Dmolpromise === 'undefined') {
-$3Dmolpromise = null;
-  $3Dmolpromise = loadScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js');
-}
-
-var viewer_17723448734633422 = null;
-var warn = document.getElementById("3dmolwarning_17723448734633422");
-if(warn) {
-    warn.parentNode.removeChild(warn);
-}
-$3Dmolpromise.then(function() {
-var viewergrid_17723448734633422 = null;
-viewergrid_17723448734633422 = $3Dmol.createViewerGrid(document.getElementById("3dmolviewer_17723448734633422"),{rows: 1, cols: 1, control_all: false},{backgroundColor:"white"});
-viewer_17723448734633422 = viewergrid_17723448734633422[0][0];
-viewergrid_17723448734633422[0][0].zoomTo();	viewergrid_17723448734633422[0][0].setBackgroundColor("blue",0.1);
-	viewergrid_17723448734633422[0][0].addModel("\n     RDKit          3D\n\n  3  2  0  0  0  0  0  0  0  0999 V2000\n   -5.0992    3.0595    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.7476    3.9120   -0.2285 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.9827    3.1606    0.3341 H   0  0  0  0  0  0  0  0  0  0  0  0\n  2  1  1  0\n  3  1  1  0\nM  END\n","mol");
-	viewergrid_17723448734633422[0][0].setStyle({},{"stick": {}, "sphere": {"radius": 0.3}});
-	viewergrid_17723448734633422[0][0].zoomTo();
-	viewergrid_17723448734633422[0][0].addLabel("Mol 1",{"fontColor": "black", "fontSize": 13, "backgroundColor": "white", "borderColor": "black", "borderWidth": 1, "useScreen": true, "inFront": true, "screenOffset": {"x": 10, "y": 0}});
-	viewergrid_17723448734633422[0][0].setClickable({},true,"function(atom, viewer, event, container) {\n                if(!viewer._picks)       viewer._picks = [];\n                if(!viewer._distLabels)  viewer._distLabels = {};\n                if(!viewer._anglePicks)  viewer._anglePicks = [];\n                if(!viewer._angleLabels) viewer._angleLabels = {};\n\n                // Shift-click: angle\n                if(event.shiftKey) {\n                    viewer._anglePicks.push(atom);\n                    if(viewer._anglePicks.length === 3) {\n                        var A = viewer._anglePicks[0],\n                            B = viewer._anglePicks[1],\n                            C = viewer._anglePicks[2];\n                        var key = [A.index,B.index,C.index].join('-');\n                        if(key in viewer._angleLabels) {\n                            viewer.removeLabel(viewer._angleLabels[key]);\n                            delete viewer._angleLabels[key];\n                        } else {\n                            function vec(u,v){return{x:u.x-v.x,y:u.y-v.y,z:u.z-v.z}};\n                            var vBA=vec(A,B), vBC=vec(C,B);\n                            var dot=vBA.x*vBC.x+vBA.y*vBC.y+vBA.z*vBC.z;\n                            var magBA=Math.sqrt(vBA.x*vBA.x+vBA.y*vBA.y+vBA.z*vBA.z);\n                            var magBC=Math.sqrt(vBC.x*vBC.x+vBC.y*vBC.y+vBC.z*vBC.z);\n                            var angle=(Math.acos(dot/(magBA*magBC))*(180/Math.PI))\n                                      .toFixed(2)+'\u00b0';\n                            var lbl = viewer.addLabel(angle,\n                                {position:{x:B.x,y:B.y,z:B.z},\n                                 backgroundColor:'blue', fontColor:'white',\n                                 fontSize:12});\n                            viewer._angleLabels[key] = lbl;\n                        }\n                        viewer._anglePicks = [];\n                    }\n                }\n                // Ctrl-click: distance\n                else if(event.ctrlKey) {\n                    viewer._picks.push(atom);\n                    if(viewer._picks.length === 2) {\n                        var a=viewer._picks[0], b=viewer._picks[1];\n                        var key=[Math.min(a.index,b.index),\n                                 Math.max(a.index,b.index)].join('-');\n                        if(key in viewer._distLabels) {\n                            viewer.removeLabel(viewer._distLabels[key]);\n                            delete viewer._distLabels[key];\n                        } else {\n                            var dx=a.x-b.x, dy=a.y-b.y, dz=a.z-b.z;\n                            var dist=Math.sqrt(dx*dx+dy*dy+dz*dz)\n                                      .toFixed(3)+' \u00c5';\n                            var mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2,z:(a.z+b.z)/2};\n                            var lbl=viewer.addLabel(dist,\n                                {position:mid,backgroundColor:'grey',\n                                 fontColor:'white',fontSize:12});\n                            viewer._distLabels[key]=lbl;\n                        }\n                        viewer._picks = [];\n                    }\n                }\n                // Click: toggle label\n                else {\n                    if(atom.label) {\n                        viewer.removeLabel(atom.label); delete atom.label;\n                    } else {\n                        atom.label = viewer.addLabel(\n                            atom.index,\n                            {position:atom, backgroundColor:'white',\n                             fontColor:'black', fontSize:12}\n                        );\n                    }\n                }\n                viewer.render();\n            }");
-viewergrid_17723448734633422[0][0].render();
-});
-</script>
+        <p class="footer">
+            Edit <code>index.html</code> to update this page as you add more
+            content.
+        </p>
+    </div>
 </body>
 </html>
