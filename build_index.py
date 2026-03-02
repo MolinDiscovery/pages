@@ -1,5 +1,6 @@
-from pathlib import Path
+from collections import defaultdict
 from html import escape
+from pathlib import Path
 
 
 TITLE = "Misc Slides Pages"
@@ -17,54 +18,74 @@ def is_hidden(path: Path) -> bool:
     return any(part.startswith(".") for part in path.parts)
 
 
-def nice_name(path: Path) -> str:
-    name = path.stem if path.is_file() else path.name
-    return name.replace("_", " ").replace("-", " ").strip().title()
+def display_name(path: Path) -> str:
+    if path.name.lower() == "index.html":
+        return "index"
+    return path.stem.replace("_", " ").replace("-", " ")
 
 
-def collect_entries(root: Path) -> tuple[list[Path], list[Path]]:
-    dirs = []
-    html_files = []
+def collect_html_files(root: Path) -> dict[str, list[Path]]:
+    grouped = defaultdict(list)
 
     for path in sorted(root.rglob("*")):
         rel = path.relative_to(root)
 
         if is_hidden(rel):
             continue
-
         if any(part in IGNORE_DIRS for part in rel.parts):
             continue
-
         if path.is_dir():
-            dirs.append(rel)
             continue
-
         if path.name in IGNORE_FILES:
             continue
+        if path.suffix.lower() not in HTML_SUFFIXES:
+            continue
 
-        if path.suffix.lower() in HTML_SUFFIXES:
-            html_files.append(rel)
+        parent = rel.parent.as_posix()
+        group = "." if parent == "." else parent
+        grouped[group].append(rel)
 
-    return dirs, html_files
+    return dict(sorted(grouped.items(), key=lambda kv: kv[0]))
 
 
-def build_list_items(paths: list[Path]) -> str:
-    if not paths:
-        return "<li>No entries found.</li>"
+def build_group_sections(grouped: dict[str, list[Path]]) -> str:
+    if not grouped:
+        return """\
+            <div class="card">
+                <h2>No HTML pages found</h2>
+                <p>Add some exported HTML files and push again.</p>
+            </div>"""
 
-    items = []
-    for rel in paths:
-        href = escape(rel.as_posix())
-        label = escape(rel.as_posix())
-        items.append(f'                <li><a href="{href}">{label}</a></li>')
-    return "\n".join(items)
+    sections = []
+    for group, files in grouped.items():
+        title = "Root" if group == "." else group
+        items = []
+        for rel in files:
+            href = escape(rel.as_posix())
+            label = escape(display_name(rel))
+            sublabel = escape(rel.as_posix())
+            items.append(
+                "                    <li>"
+                f'<a href="{href}">{label}</a>'
+                f'<span class="path">{sublabel}</span>'
+                "</li>"
+            )
+
+        section = f"""\
+            <div class="card">
+                <h2>{escape(title)}</h2>
+                <ul>
+{chr(10).join(items)}
+                </ul>
+            </div>"""
+        sections.append(section)
+
+    return "\n".join(sections)
 
 
 def build_html(root: Path) -> str:
-    dirs, html_files = collect_entries(root)
-
-    dir_items = build_list_items(dirs)
-    file_items = build_list_items(html_files)
+    grouped = collect_html_files(root)
+    sections = build_group_sections(grouped)
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -82,7 +103,7 @@ def build_html(root: Path) -> str:
         }}
 
         .container {{
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }}
@@ -90,10 +111,6 @@ def build_html(root: Path) -> str:
         h1 {{
             font-size: 2.4rem;
             margin-bottom: 0.5rem;
-        }}
-
-        h2 {{
-            margin-top: 0;
         }}
 
         p {{
@@ -104,7 +121,7 @@ def build_html(root: Path) -> str:
 
         .grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
             margin-top: 2rem;
         }}
@@ -116,23 +133,38 @@ def build_html(root: Path) -> str:
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }}
 
+        h2 {{
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }}
+
         ul {{
             padding-left: 1.2rem;
-            margin-bottom: 0;
+            margin: 0;
         }}
 
         li {{
-            margin: 0.55rem 0;
+            margin: 0.7rem 0;
             overflow-wrap: anywhere;
         }}
 
         a {{
             color: #0b57d0;
             text-decoration: none;
+            font-weight: 600;
         }}
 
         a:hover {{
             text-decoration: underline;
+        }}
+
+        .path {{
+            display: block;
+            margin-top: 0.15rem;
+            color: #666;
+            font-size: 0.92rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         }}
 
         .footer {{
@@ -155,24 +187,11 @@ def build_html(root: Path) -> str:
         <p>{escape(INTRO)}</p>
 
         <div class="grid">
-            <div class="card">
-                <h2>Directories</h2>
-                <ul>
-{dir_items}
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2>HTML Pages</h2>
-                <ul>
-{file_items}
-                </ul>
-            </div>
+{sections}
         </div>
 
         <p class="footer">
-            This page is auto-generated from the repository contents.
-            Re-run <code>build_index.py</code> after adding new files.
+            This page is auto-generated on push by GitHub Actions.
         </p>
     </div>
 </body>
