@@ -1,0 +1,105 @@
+<html>
+<body style="margin: 0; padding: 0; display: block;">
+<div id="3dmolviewer_1772445731898478"  style="position: relative; width: 400px; height: 400px;">
+        <p id="3dmolwarning_1772445731898478" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
+        </div>
+<script>
+
+var loadScriptAsync = function(uri){
+  return new Promise((resolve, reject) => {
+    //this is to ignore the existence of requirejs amd
+    var savedexports, savedmodule;
+    if (typeof exports !== 'undefined') savedexports = exports;
+    else exports = {}
+    if (typeof module !== 'undefined') savedmodule = module;
+    else module = {}
+
+    var tag = document.createElement('script');
+    tag.src = uri;
+    tag.async = true;
+    tag.onload = () => {
+        exports = savedexports;
+        module = savedmodule;
+        resolve();
+    };
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+});
+};
+
+if(typeof $3Dmolpromise === 'undefined') {
+$3Dmolpromise = null;
+  $3Dmolpromise = loadScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.4.2/3Dmol-min.js');
+}
+
+var viewer_1772445731898478 = null;
+var warn = document.getElementById("3dmolwarning_1772445731898478");
+if(warn) {
+    warn.parentNode.removeChild(warn);
+}
+$3Dmolpromise.then(function() {
+var viewergrid_1772445731898478 = null;
+viewergrid_1772445731898478 = $3Dmol.createViewerGrid(document.getElementById("3dmolviewer_1772445731898478"),{rows: 1, cols: 1, control_all: false},{backgroundColor:"white"});
+viewer_1772445731898478 = viewergrid_1772445731898478[0][0];
+viewergrid_1772445731898478[0][0].zoomTo();	viewergrid_1772445731898478[0][0].setBackgroundColor("blue",0.1);
+	viewergrid_1772445731898478[0][0].addModel("\n     RDKit          3D\n\n 54 55  0  0  0  0  0  0  0  0999 V2000\n    1.3147    0.1121    2.6718 H   0  0  0  0  0  0  0  0  0  0  0  0\n    2.1035    0.0855    1.9266 C   0  0  0  0  0  3  0  0  0  0  0  0\n    2.7882    1.2481    1.5950 C   0  0  0  0  0  3  0  0  0  0  0  0\n    2.4348   -1.1056    1.2932 C   0  0  0  0  0  3  0  0  0  0  0  0\n    3.8189    1.2667    0.6429 C   0  0  0  0  0  3  0  0  0  0  0  0\n    2.5117    2.1788    2.0835 H   0  0  0  0  0  0  0  0  0  0  0  0\n    3.4425   -1.1133    0.3367 C   0  0  0  0  0  3  0  0  0  0  0  0\n    1.9126   -2.0258    1.5358 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.1398    0.0536    0.0016 C   0  0  0  0  0  3  0  0  0  0  0  0\n    3.6929   -2.0431   -0.1591 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.5056    2.6876    0.4420 B   0  0  0  0  0  0  0  0  0  0  0  0\n    5.5296    1.8782   -0.9072 H   0  0  0  0  0  0  0  0  0  0  0  0\n    5.6420    2.6511   -0.8202 H   0  0  0  0  0  0  0  0  0  0  0  0\n    3.6386    3.8367   -0.1341 C   0  0  0  0  0  3  0  0  0  0  0  0\n    2.3624    3.7926   -0.6843 C   0  0  0  0  0  3  0  0  0  0  0  0\n    8.4947   -0.6114   -1.3481 H   0  0  0  0  0  0  0  0  0  0  0  0\n    7.7266    0.9685   -1.4673 H   0  0  0  0  0  0  0  0  0  0  0  0\n    5.5470    0.1867   -4.3828 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.0115    1.4302   -3.2258 H   0  0  0  0  0  0  0  0  0  0  0  0\n    7.9505   -0.0097   -3.7173 H   0  0  0  0  0  0  0  0  0  0  0  0\n    7.0652   -1.4439   -3.2315 H   0  0  0  0  0  0  0  0  0  0  0  0\n    5.1733    0.0418   -1.0037 N   0  0  0  0  0  0  0  0  0  0  0  0\n    6.8657    0.0203    0.7871 C   0  0  0  0  0  0  0  0  0  0  0  0\n    7.8728   -0.3211    1.0452 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.8682    1.1128    0.7826 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.1825   -0.3145    1.5710 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.4929   -2.0891   -0.4528 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.9869    5.0978   -1.0641 C   0  0  0  0  0  3  0  0  0  0  0  0\n    1.7745    2.8903   -0.7820 H   0  0  0  0  0  0  0  0  0  0  0  0\n    3.0466    5.9197   -0.7426 C   0  0  0  0  0  3  0  0  0  0  0  0\n    1.0578    5.4111   -1.5174 H   0  0  0  0  0  0  0  0  0  0  0  0\n    3.1718    6.9859   -0.8689 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.0325    5.1652   -0.1845 N   0  0  0  0  0  0  0  0  0  0  0  0\n    5.3038    5.6785    0.2779 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.4371    5.4847    1.3449 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.1334    5.2149   -0.2638 H   0  0  0  0  0  0  0  0  0  0  0  0\n    5.3357    6.7557    0.1076 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.4800   -0.5519   -0.5864 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.7005   -0.0778   -2.4187 C   0  0  0  0  0  0  0  0  0  0  0  0\n    7.5542   -0.1076   -1.5966 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.8546    0.3505   -3.3445 C   0  0  0  0  0  0  0  0  0  0  0  0\n    7.1638   -0.3679   -3.0454 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.7566   -2.4262    0.2795 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.3026   -2.6022   -1.3958 H   0  0  0  0  0  0  0  0  0  0  0  0\n    7.4769   -2.4109   -0.0967 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.1903   -1.4729   -2.8376 C   0  0  0  0  0  0  0  0  0  0  0  0\n    3.8452   -1.4291   -3.8757 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.9555   -2.2477   -2.7806 H   0  0  0  0  0  0  0  0  0  0  0  0\n    3.3395   -1.7820   -2.2273 H   0  0  0  0  0  0  0  0  0  0  0  0\n    3.5391    0.9061   -2.6332 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.6529    0.6123   -2.0651 H   0  0  0  0  0  0  0  0  0  0  0  0\n    3.8024    1.9259   -2.3422 H   0  0  0  0  0  0  0  0  0  0  0  0\n    3.2719    0.9159   -3.6943 H   0  0  0  0  0  0  0  0  0  0  0  0\n    5.4170    2.9661    1.1799 H   0  0  0  0  0  0  0  0  0  0  0  0\n  2  1  1  0\n  3  2  1  0\n  4  2  1  0\n  5  3  1  0\n  6  3  1  0\n  7  4  1  0\n  8  4  1  0\n  9  5  1  0\n  9  7  1  0\n 10  7  1  0\n 11  5  1  0\n 13 12  1  0\n 14 11  1  0\n 15 14  1  0\n 22  9  1  0\n 24 23  1  0\n 25 23  1  0\n 26 23  1  0\n 28 15  1  0\n 29 15  1  0\n 30 28  1  0\n 31 28  1  0\n 32 30  1  0\n 33 14  1  0\n 33 30  1  0\n 34 33  1  0\n 35 34  1  0\n 36 34  1  0\n 37 34  1  0\n 38 22  1  0\n 38 23  1  0\n 38 27  1  0\n 39 22  1  0\n 40 16  1  0\n 40 17  1  0\n 40 38  1  0\n 41 18  1  0\n 41 19  1  0\n 41 39  1  0\n 42 20  1  0\n 42 21  1  0\n 42 40  1  0\n 42 41  1  0\n 43 27  1  0\n 44 27  1  0\n 45 27  1  0\n 46 39  1  0\n 47 46  1  0\n 48 46  1  0\n 49 46  1  0\n 50 39  1  0\n 51 50  1  0\n 52 50  1  0\n 53 50  1  0\n 54 11  1  0\nM  RAD  8   2   2   3   2   4   2   5   2   7   2   9   2  14   2  15   2\nM  RAD  2  28   2  30   2\nM  END\n","mol");
+	viewergrid_1772445731898478[0][0].setStyle({},{"stick": {}, "sphere": {"radius": 0.3}});
+	viewergrid_1772445731898478[0][0].zoomTo();
+	viewergrid_1772445731898478[0][0].addLabel("Mol 1",{"fontColor": "black", "fontSize": 13, "backgroundColor": "white", "borderColor": "black", "borderWidth": 1, "useScreen": true, "inFront": true, "screenOffset": {"x": 10, "y": 0}});
+	viewergrid_1772445731898478[0][0].setClickable({},true,"function(atom, viewer, event, container) {\n                if(!viewer._picks)       viewer._picks = [];\n                if(!viewer._distLabels)  viewer._distLabels = {};\n                if(!viewer._anglePicks)  viewer._anglePicks = [];\n                if(!viewer._angleLabels) viewer._angleLabels = {};\n\n                // Shift-click: angle\n                if(event.shiftKey) {\n                    viewer._anglePicks.push(atom);\n                    if(viewer._anglePicks.length === 3) {\n                        var A = viewer._anglePicks[0],\n                            B = viewer._anglePicks[1],\n                            C = viewer._anglePicks[2];\n                        var key = [A.index,B.index,C.index].join('-');\n                        if(key in viewer._angleLabels) {\n                            viewer.removeLabel(viewer._angleLabels[key]);\n                            delete viewer._angleLabels[key];\n                        } else {\n                            function vec(u,v){\n                                return {\n                                    x:u.x-v.x,\n                                    y:u.y-v.y,\n                                    z:u.z-v.z\n                                };\n                            };\n                            var vBA=vec(A,B), vBC=vec(C,B);\n                            var dot=vBA.x*vBC.x+vBA.y*vBC.y+vBA.z*vBC.z;\n                            var magBA=Math.sqrt(\n                                vBA.x*vBA.x+vBA.y*vBA.y+vBA.z*vBA.z\n                            );\n                            var magBC=Math.sqrt(\n                                vBC.x*vBC.x+vBC.y*vBC.y+vBC.z*vBC.z\n                            );\n                            var angle=(\n                                Math.acos(dot/(magBA*magBC))*(180/Math.PI)\n                            ).toFixed(2)+'\u00b0';\n                            var lbl = viewer.addLabel(\n                                angle,\n                                {\n                                    position:{x:B.x,y:B.y,z:B.z},\n                                    backgroundColor:'blue',\n                                    fontColor:'white',\n                                    fontSize:12\n                                }\n                            );\n                            viewer._angleLabels[key] = lbl;\n                        }\n                        viewer._anglePicks = [];\n                    }\n                }\n                // Ctrl-click: distance\n                else if(event.ctrlKey) {\n                    viewer._picks.push(atom);\n                    if(viewer._picks.length === 2) {\n                        var a=viewer._picks[0], b=viewer._picks[1];\n                        var key=[\n                            Math.min(a.index,b.index),\n                            Math.max(a.index,b.index)\n                        ].join('-');\n                        if(key in viewer._distLabels) {\n                            viewer.removeLabel(viewer._distLabels[key]);\n                            delete viewer._distLabels[key];\n                        } else {\n                            var dx=a.x-b.x, dy=a.y-b.y, dz=a.z-b.z;\n                            var dist=Math.sqrt(dx*dx+dy*dy+dz*dz)\n                                      .toFixed(3)+' \u00c5';\n                            var mid={\n                                x:(a.x+b.x)/2,\n                                y:(a.y+b.y)/2,\n                                z:(a.z+b.z)/2\n                            };\n                            var lbl=viewer.addLabel(\n                                dist,\n                                {\n                                    position:mid,\n                                    backgroundColor:'grey',\n                                    fontColor:'white',\n                                    fontSize:12\n                                }\n                            );\n                            viewer._distLabels[key]=lbl;\n                        }\n                        viewer._picks = [];\n                    }\n                }\n                // Click: toggle label\n                else {\n                    if(atom.label) {\n                        viewer.removeLabel(atom.label);\n                        delete atom.label;\n                    } else {\n                        atom.label = viewer.addLabel(\n                            atom.index,\n                            {\n                                position:atom,\n                                backgroundColor:'white',\n                                fontColor:'black',\n                                fontSize:12\n                            }\n                        );\n                    }\n                }\n                viewer.render();\n            }");
+
+window.saveView = function(row, col) {
+    const v = viewergrid_1772445731898478[row][col].getView();
+    console.log(JSON.stringify(v));
+    return v;
+};
+
+window.saveAllViews = function() {
+    const out = {};
+    for (let r = 0; r < viewergrid_1772445731898478.length; r++) {
+        for (let c = 0; c < viewergrid_1772445731898478[r].length; c++) {
+            if (viewergrid_1772445731898478[r][c]) {
+                out[`${r},${c}`] = viewergrid_1772445731898478[r][c].getView();
+            }
+        }
+    }
+    console.log(JSON.stringify(out, null, 2));
+    return out;
+};
+
+window.setViewForCell = function(row, col, view) {
+    viewergrid_1772445731898478[row][col].setView(view);
+    viewergrid_1772445731898478[row][col].render();
+};
+
+window.applyViews = function(viewMap) {
+    for (const key in viewMap) {
+        const [r, c] = key.split(',').map(Number);
+        if (viewergrid_1772445731898478[r] && viewergrid_1772445731898478[r][c]) {
+            viewergrid_1772445731898478[r][c].setView(viewMap[key]);
+            viewergrid_1772445731898478[r][c].render();
+        }
+    }
+};
+
+const fixedViews = {
+  "0,0": [
+    -4.652019826186285,
+    -1.4023470353309804,
+    0.7395144174878574,
+    131.64646454361952,
+    -0.5148587565211851,
+    -0.4569169487385688,
+    -0.6476143542031344,
+    0.3267154894077593
+  ]
+};
+
+applyViews(fixedViews);
+
+
+viewergrid_1772445731898478[0][0].render();
+});
+</script>
+</body>
+</html>
