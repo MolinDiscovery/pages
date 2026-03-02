@@ -1,4 +1,4 @@
-name: Build index
+name: Build and deploy Pages
 
 on:
   push:
@@ -7,11 +7,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  build-index:
-    if: github.actor != 'github-actions[bot]'
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,10 +31,22 @@ jobs:
       - name: Generate index.html
         run: python build_index.py
 
-      - name: Commit updated index.html
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          git diff --cached --quiet || git commit -m "Auto-update index.html"
-          git push
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
