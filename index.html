@@ -14,7 +14,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }
@@ -22,10 +22,6 @@
         h1 {
             font-size: 2.4rem;
             margin-bottom: 0.5rem;
-        }
-
-        h2 {
-            margin-top: 0;
         }
 
         p {
@@ -36,7 +32,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
             margin-top: 2rem;
         }
@@ -48,23 +44,38 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
 
+        h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
         ul {
             padding-left: 1.2rem;
-            margin-bottom: 0;
+            margin: 0;
         }
 
         li {
-            margin: 0.55rem 0;
+            margin: 0.7rem 0;
             overflow-wrap: anywhere;
         }
 
         a {
             color: #0b57d0;
             text-decoration: none;
+            font-weight: 600;
         }
 
         a:hover {
             text-decoration: underline;
+        }
+
+        .path {
+            display: block;
+            margin-top: 0.15rem;
+            color: #666;
+            font-size: 0.92rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         }
 
         .footer {
@@ -88,24 +99,16 @@
 
         <div class="grid">
             <div class="card">
-                <h2>Directories</h2>
+                <h2>FRUST-update-11</h2>
                 <ul>
-                <li><a href="FRUST-update-11">FRUST-update-11</a></li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2>HTML Pages</h2>
-                <ul>
-                <li><a href="FRUST-update-11/IRC.html">FRUST-update-11/IRC.html</a></li>
-                <li><a href="FRUST-update-11/test_h2o.html">FRUST-update-11/test_h2o.html</a></li>
+                    <li><a href="FRUST-update-11/IRC.html">IRC</a><span class="path">FRUST-update-11/IRC.html</span></li>
+                    <li><a href="FRUST-update-11/test_h2o.html">test h2o</a><span class="path">FRUST-update-11/test_h2o.html</span></li>
                 </ul>
             </div>
         </div>
 
         <p class="footer">
-            This page is auto-generated from the repository contents.
-            Re-run <code>build_index.py</code> after adding new files.
+            This page is auto-generated on push by GitHub Actions.
         </p>
     </div>
 </body>
