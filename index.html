@@ -14,7 +14,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }
@@ -24,14 +24,24 @@
             margin-bottom: 0.5rem;
         }
 
+        h2 {
+            margin-top: 0;
+        }
+
         p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
             color: #444;
         }
 
-        .card {
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
             margin-top: 2rem;
+        }
+
+        .card {
             background: white;
             border-radius: 14px;
             padding: 1.5rem;
@@ -40,10 +50,12 @@
 
         ul {
             padding-left: 1.2rem;
+            margin-bottom: 0;
         }
 
         li {
-            margin: 0.7rem 0;
+            margin: 0.55rem 0;
+            overflow-wrap: anywhere;
         }
 
         a {
@@ -71,28 +83,29 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome</h1>
-        <p>
-            This GitHub Pages site hosts miscellaneous HTML content used for
-            slide presentations and interactive demos.
-        </p>
+        <h1>Misc Slides Pages</h1>
+        <p>This GitHub Pages site hosts miscellaneous HTML content used for slide presentations and interactive demos.</p>
 
-        <div class="card">
-            <h2>Contents</h2>
-            <p>
-                Add links here to the pages you want to use in your
-                presentations.
-            </p>
+        <div class="grid">
+            <div class="card">
+                <h2>Directories</h2>
+                <ul>
+                <li><a href="FRUST-update-11">FRUST-update-11</a></li>
+                </ul>
+            </div>
 
-            <ul>
-                <li><a href="molecules/">Molecule pages</a></li>
-                <li><a href="molecules/example.html">Example molecule</a></li>
-            </ul>
+            <div class="card">
+                <h2>HTML Pages</h2>
+                <ul>
+                <li><a href="FRUST-update-11/IRC.html">FRUST-update-11/IRC.html</a></li>
+                <li><a href="FRUST-update-11/test_h2o.html">FRUST-update-11/test_h2o.html</a></li>
+                </ul>
+            </div>
         </div>
 
         <p class="footer">
-            Edit <code>index.html</code> to update this page as you add more
-            content.
+            This page is auto-generated from the repository contents.
+            Re-run <code>build_index.py</code> after adding new files.
         </p>
     </div>
 </body>
