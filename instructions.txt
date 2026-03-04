@@ -1,4 +1,0 @@
-python build_index.py
-git add index.html build_index.py
-git commit -m "Update landing page"
-git push
